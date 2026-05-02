@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+lightgbm
+xgboost
+catboost
+pyyaml
+hydra-core
+mlflow
+jupyter
