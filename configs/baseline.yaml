@@ -1,0 +1,37 @@
+data:
+  train_path: "data/raw/train.csv"
+  test_path: "data/raw/test.csv"
+  target: "Survived"
+
+preprocess:
+  num_cols: ["Age", "Fare", "Parch", "SibSp"]
+  cat_cols: ["Sex", "Embarked"]
+  drop_cols: ["PassengerId", "Name", "Cabin"]
+
+cv: 
+  do: true
+  folds: 5
+  scoring: 'accuracy'
+
+model:
+  name: "SGD"
+
+
+SGD:
+  max_iter: 1000
+  tol: 0.001
+  random_state: 42
+
+RF:
+  random_state: 42
+
+search:
+  do: false
+  cv: 3
+  scoring: 
+  param_grid:
+    n_estimators: [3, 10, 30]
+    max_features: [2, 4, 6, 8]
+
+
+
