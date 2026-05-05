@@ -5,12 +5,19 @@ import pandas as pd
 from sklearn.pipeline import Pipeline
 from preprocess import get_preprocessor
 from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.metrics import accuracy_score
 
 def start_train(config_path: str):
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
 
     data = pd.read_csv(config['data']['train_path'])
+
+    if 'drop_cols' in config['preprocess']:
+        cols_to_drop = [col for col in config['preprocess']['drop_cols'] if col in data.columns]
+        data = data.drop(columns=cols_to_drop)
+
+
     X_train = data.drop(config['data']['target'], axis=1)
     y_train = data[config['data']['target']]
 
@@ -59,6 +66,9 @@ def start_train(config_path: str):
     else:
         full_pipeline.fit(X_train, y_train)
         print('Model trained')
+        predictions = full_pipeline.predict(X_train)
+        scoring = accuracy_score(y_train, predictions)
+        print(f"Accuracy scoring: {scoring}")
 
 if __name__ == "__main__":
     start_train('configs/baseline.yaml')
