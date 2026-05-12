@@ -2,14 +2,6 @@ import pandas as pd
 import numpy as np 
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
-#     def fit(self, X, y=None):
-#         return self
-#     def transform(self, X):
-#         X = X.copy()
-#         X['FamilySize'] = X['Parch'] + X['SibSp'] + 1
-#         X['IsAlone'] = (X['FamilySize'] == 1).astype(int)
-#         return X
 
 
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
