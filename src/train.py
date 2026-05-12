@@ -6,6 +6,15 @@ from sklearn.pipeline import Pipeline
 from preprocess import get_preprocessor
 from sklearn.model_selection import cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score
+import os
+import joblib
+from utils import load_model, load_config
+
+def _save_model(pipeline, config):
+    save_path = config['model'].get('save_path', 'models/model.pkl')
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    joblib.dump(pipeline, save_path)
+    print(f"✅ Model saved to {save_path}")
 
 def start_train(config_path: str):
     with open(config_path, 'r') as f:
@@ -69,6 +78,11 @@ def start_train(config_path: str):
         predictions = full_pipeline.predict(X_train)
         scoring = accuracy_score(y_train, predictions)
         print(f"Accuracy scoring: {scoring}")
+
+        if config['model'].get('save', True):
+            _save_model(full_pipeline, config)
+        else:
+            print('Model is not saved!')
 
 if __name__ == "__main__":
     start_train('configs/baseline.yaml')
