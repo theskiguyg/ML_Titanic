@@ -46,3 +46,11 @@ ML_Titanic/
 | **Test accuracy (vs gender_submission)** | 0.9187 |
 
 ## Analysis of results
+
+The model shows a high correlation with the baseline "female → survived, male → did not"**. This is expected, as gender is the main predictor on the Titanic. However, in ~8% of cases, the model makes decisions that deviate from this simple rule:
+
+- Male children → survived
+- Third-class women → did not survive
+- Passengers with large families → did not survive
+
+**Conclusion:** The model identified non-trivial patterns without degrading the baseline.
