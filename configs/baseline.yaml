@@ -47,6 +47,6 @@ search:
 predict:
   model_path: "models/model.pkl"
   submit_path: "data/submissions/submission.csv"
-  save_predictions: true
+  save_predictions: false
 
 
