@@ -43,7 +43,3 @@ def start_predict(config_path: str):
 if __name__=='__main__':
     start_predict('configs/baseline.yaml')
 
-
-
-
-
