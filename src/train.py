@@ -8,7 +8,6 @@ from sklearn.model_selection import cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score
 import os
 import joblib
-from utils import load_model, load_config
 
 def _save_model(pipeline, config):
     save_path = config['model'].get('save_path', 'models/model.pkl')
