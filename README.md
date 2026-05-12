@@ -1,4 +1,48 @@
 # Getting into classic Machine Learning
 
-This repository is written after the third chapter of the book. The main idea of this project is to train on ML algorythms and create full universal pipeline. 
+Created by Zagrebin Egor as part of the ML Engineering course based on the book "Hands-On Machine Learning" (Aurélien Géron, 1st edition, 2017). 
 
+Goal: Building an end-to-end production-ready ML solution with clean code, configuration, and reproducibility. 
+
+## Project Overview 
+
+An end-to-end machine learning project based on Titanic dataset. The project covers the full cycle: from initial data analysis (EDA) to a production-ready pipeline managed through configuration files.
+
+## Project structure
+
+```text
+ML_Titanic/
+├── configs/
+│   └── baseline.yaml              # Confiduration file (params, folds, etc.)
+├── data/
+│   ├── raw/                       # Data
+│   │   ├── train.csv
+│   │   ├── test.csv
+│   │   └── gender_submission.csv  # Baseline 
+│   └── submissions/               # Submitted predictions 
+│       └── submission.csv
+├── models/
+│   └── model.pkl                  # Saved Pipeline
+├── notebooks/
+│   └── 01_eda.ipynb               # EDA
+├── src/                           # Code
+│   ├── __init__.py
+│   ├── features.py                # Feature engineering
+│   ├── preprocess.py              # Preprocessing data
+│   ├── train.py                   # Fit + CV + GridSearch
+│   └── predict.py                 # Inference + submit
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
+
+## Results & metrics 
+
+| Metrics | Meaning |
+|---------|----------|
+| **Best Model** | Random Forest Classifier |
+| **Cross-validation (5-fold)** | 0.815 ± 0.024 |
+| **Full train set validation** | 0.857 |
+| **Test accuracy (vs gender_submission)** | 0.9187 |
+
+## Analysis of results
